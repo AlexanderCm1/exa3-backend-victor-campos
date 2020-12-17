@@ -38,7 +38,7 @@ public class PersonaDaoImpl implements PersonaDao{
 
 	@Override
 	public Persona read(int id) {
-		String SQL = "select *from persona where idpersona=?";
+		String SQL = "select *from personas where idpersona=?";
 		return jdbcTemplate.queryForObject(SQL, new Object[] {id}, new BeanPropertyRowMapper<Persona>(Persona.class));
 	}
 

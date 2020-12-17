@@ -31,8 +31,8 @@ Gson gson =new Gson();
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)			
 		.withCatalogName("pk_roles") //nombre del paquete
 		.withProcedureName("sp_read_rol") //nombre del procedimiento
-		.declareParameters(new SqlOutParameter("cursor_roles", OracleTypes.REF_CURSOR, new ColumnMapRowMapper()), new SqlParameter("idrol", OracleTypes.NUMBER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("idrol", id);
+		.declareParameters(new SqlOutParameter("cursor_roles", OracleTypes.REF_CURSOR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("idr", id);
         Map<String, Object> map= simpleJdbcCall.execute(in);	
 		return map;	
 	}
@@ -64,6 +64,7 @@ public int delete(int id) {
 	// TODO Auto-generated method stub
 	return jdbcTemplate.update("call pk_roles.sp_delete_rol(?)", id);
 }
+/*
 @Override
 public void convertitMap(Map<String, Object> map) {
 	Gson rr = new Gson();
@@ -72,10 +73,10 @@ public void convertitMap(Map<String, Object> map) {
         System.out.println("entry key : "+entry.getKey());
         System.out.println("Object value :"+entry.getValue());     
         System.out.println("Object value :"+entry.getClass().toString());     
-	}*/
+	}
 		Object lista =rr.toJson(map.get("cursor_roles"));
 	System.out.println(lista.toString());
-}
+}*/
 
 @Override
 public int update(int id) {
@@ -97,6 +98,10 @@ public List<GrantedAuthority> buscarRolUser(int iduser) {
 	return autores;
 }
 
+
+
+
+/*
 @Override
 public List<Rol> readHola(int id) {
 	String SQL = "SELECT r.idrol, r.nombre FROM usuarios u " + 
@@ -104,5 +109,5 @@ public List<Rol> readHola(int id) {
 			"INNER JOIN roles r ON r.idrol=ur.idrol " + 
 			"WHERE u.idusuario = ?";
 	return  jdbcTemplate.query(SQL, new Object[]{id}, new BeanPropertyRowMapper<Rol>(Rol.class));		
-}
+}*/
 }

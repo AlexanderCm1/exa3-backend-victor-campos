@@ -12,9 +12,9 @@ int create(Rol r);
 int update(Rol r);
 int update(int id);
 int delete(int id);
-List<Rol> readHola(int id);
+//List<Rol> readHola(int id);
 Map<String, Object> read(int id);
 Map<String, Object> readAll();
 List<GrantedAuthority> buscarRolUser(int iduser);
-void convertitMap(Map<String, Object> map);
+//void convertitMap(Map<String, Object> map);
 }
